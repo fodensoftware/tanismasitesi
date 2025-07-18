@@ -1,0 +1,226 @@
+<!-- HOŞGELDİN , KODU İNCELEYECEĞİNİZİ BİLDİĞİMDEN BAZI ALANLARA YORUM SATIRI BIRAKTIM. -->
+<!DOCTYPE html>
+<!-- Döküman Türünü Belirten Satır: HTML5 Standartlarını Kullanır -->
+<html lang="tr">
+<head>
+  <!-- Karakter Setini UTF-8 Olarak Ayarlar -->
+  <meta charset="UTF-8">
+  <!-- Sayfanın Mobil Uyumlu Olmasını Sağlar -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Sayfa Açıklaması: Arama Motorları İçin Kısa Tanım -->
+  <meta name="description" content="Romantik ve modern tanışma sayfası">
+  <!-- Sayfa Başlığı: Tarayıcı Sekmesinde Görünür -->
+  <title>Birlikte Yeni Bir Hikaye?</title>
+  <!-- Harici Stil Dosyasını Dahil Eder -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ana İçeriği Saran Konteyner -->
+  <div class="container">
+    <!-- Sayfanın Ana Başlığı Ve Kalp Emojisi -->
+    <h1 class="main-title">Birlikte Yeni Bir Hikaye Yazalım mı? <span aria-hidden="true">💖</span></h1>
+    <!-- Kullanıcıyı Davet Eden Romantik Açıklama Metni -->
+    <div class="desc">Belki De Bu Sayfa, En Güzel Anımızın İlk Satırı Olur. Seninle Yıldızlara Bakmak, Bir Tebessümde Yeniden Başlamak... Her Şey Seninle Güzel! 💖</div>
+    <!-- Evet Ve Hayır Butonlarını İçeren Alan -->
+    <div class="buttons-container">
+      <!-- Kullanıcıyı Formu Başlatmaya Davet Eden Evet Butonu -->
+      <button id="yes-btn" class="btn">Evet, Haydi Başlayalım</button>
+      <!-- Kullanıcıya Vazgeçme Seçeneği Sunan Hayır Butonu -->
+      <button id="no-btn" class="btn btn--no">Belki Başka Bir Zaman</button>
+    </div>
+    <!-- Form Alanı: Başlangıçta Gizli, Evet Butonuna Basınca Açılır -->
+    <section class="form-section" id="form-section">
+      <!-- Formun Başlığı Ve Kalp Emojisi -->
+      <h2 class="form-title">Birlikte Güzel Bir Hikâyeye Başlamak İçin, Bana Biraz Kendinden Bahseder Misin? 💖</h2>
+      <!-- Kullanıcıya Formda Kaydırma Yapabileceğini Bildiren Bilgi -->
+      <div class="scroll-info" id="scroll-info">Tüm Soruları Görmek İçin Aşağı Kaydırabilirsin ⬇️</div>
+      <!-- Kullanıcıdan Bilgi Alan Form -->
+      <form id="user-form" action="#" method="POST">
+        <!-- İlk Soru: Hayalindeki İlk Buluşma -->
+        <div class="form-group">
+          <label for="first-date" class="form-label">Hayalindeki İlk Buluşma Nasıl Olurdu?</label>
+          <input type="text" id="first-date" name="ilkbulusma" class="form-input" placeholder="Beni Büyüle..." required>
+        </div>
+        <!-- İkinci Soru: Birlikte Dinlenmek İstenen Aşk Şarkısı -->
+        <div class="form-group">
+          <label for="love-song" class="form-label">Birlikte Dinlemek İstediğin Aşk Şarkısı?</label>
+          <input type="text" id="love-song" name="sarki" class="form-input" placeholder="Bir Şarkı, Bir An..." required>
+        </div>
+        <!-- Üçüncü Soru: En Romantik Hayal -->
+        <div class="form-group">
+          <label for="secret" class="form-label">Kalbinde Sakladığın En Romantik Hayalin Nedir?</label>
+          <input type="text" id="secret" name="hayal" class="form-input" placeholder="Sadece Bana Fısılda..." required>
+        </div>
+        <!-- Formu Gönderen Buton -->
+        <button type="submit" class="submit-btn">Gönder</button>
+      </form>
+    </section>
+    <!-- Kalp Animasyonlarının Gözüktüğü Alan -->
+    <div class="hearts-container" id="hearts-container"></div>
+  </div>
+  <!-- Sayfa Yüklendiğinde Çalışan JavaScript Kodları -->
+  <script>
+    // Sayfa Yüklendiğinde Tüm Olayları Tanımlar
+    document.addEventListener('DOMContentLoaded', () => {
+      // Evet Butonunu Seçer
+      const yesBtn = document.getElementById('yes-btn');
+      // Hayır Butonunu Seçer
+      const noBtn = document.getElementById('no-btn');
+      // Form Alanını Seçer
+      const formSection = document.getElementById('form-section');
+      // Formu Seçer
+      const userForm = document.getElementById('user-form');
+      // Kalp Animasyonlarının Gözüktüğü Konteyneri Seçer
+      const heartsContainer = document.getElementById('hearts-container');
+      // Başarı Durumunu Takip Eden Değişken
+      let isSuccessState = false;
+      // Hayır Butonuna Kaç Kere Basıldığını Sayar
+      let noClickCount = 0;
+      // Hayır Butonuna Basıldıkça Gözüken Mesajlar
+      // DipNot: Bu Romatikleşme Mesajlarını Yapayzeka İle Yazdım Çünkü Fazla Romantik Değilim 😄
+      const noResponses = [
+        'Emin Misin?',
+        'Gerçekten Mi? Bir Şans Daha Vermek İster Misin? 💔',
+        'Aşk Bazen Cesaret İster! Birlikte Gülmek, Birlikte Hayal Kurmak Varken Vazgeçmek Olur Mu?',
+        'Bir Bakış, Bir Tebessüm, Bir Kalp... Belki De En Güzel Hikâyemiz Başlamak Üzere!',
+        'Kırma Beni, Dene Lütfen! Birlikte Yıldızlara Dokunabiliriz...',
+        'Birlikte Güzel Olurduk... Hayallerimizi Paylaşmaya Ne Dersin?',
+        'Kalbim Hâlâ Burada! 💌',
+        'Yine De Seni Bekleyeceğim...',
+        'Birlikte Bir Şarkıda Kaybolmak Varken Neden Vazgeçiyorsun?',
+        'Belki De En Güzel Anımızı Kaçırıyorsun...'
+      ];
+      // Kalp Animasyonlarında Kullanılan Renkli Emojiler
+      const heartColors = ['💖', '💘', '💝', '💗', '💓', '💞', '💟', '❤️', '🩷', '🧡', '💜', '💙', '💚', '💛', '🤍', '🤎', '🖤', '💌', '💕', '❣️', '💋', '💍', '💫', '💐', '🌹', '🌸', '🌺', '🌷', '🌻', '🦋', '✨'];
+      // Aynı Anda Ekranda Olacak Toplam Kalp Sayısı
+      const totalHearts = 80;
+      // Hayır Butonuna Mouse İle Gelindiğinde Olayı Dinler
+      noBtn.addEventListener('mouseover', handleNoButtonHover);
+      // Evet Butonuna Tıklanınca Olayı Dinler
+      yesBtn.addEventListener('click', handleYesButtonClick);
+      // Evet Butonuna Klavye İle Enter Veya Boşluk Basılırsa Olayı Dinler
+      yesBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') handleYesButtonClick();
+      });
+      // Form Gönderildiğinde Olayı Dinler
+      userForm.addEventListener('submit', handleFormSubmit);
+      // Hayır Butonuna Mouse İle Gelindiğinde Çalışan Fonksiyon
+      function handleNoButtonHover() {
+        // Eğer Başarı Durumu Varsa Hiçbir Şey Yapmaz
+        if (isSuccessState) return;
+        // Hayır Butonuna Kaç Kere Basıldığını Artırır
+        noClickCount++;
+        // Mesaj Listesinden Sıradaki Mesajı Seçer
+        const responseIndex = Math.min(noClickCount - 1, noResponses.length - 1);
+        noBtn.textContent = noResponses[responseIndex];
+        // Butonun Boyutunu Ve Konumunu Alır
+        const btnRect = noBtn.getBoundingClientRect();
+        const btnWidth = btnRect.width;
+        const btnHeight = btnRect.height;
+        const padding = 10;
+        // Konteynerin Boyutunu Alır
+        const containerRect = document.querySelector('.container').getBoundingClientRect();
+        const minX = containerRect.left;
+        const minY = containerRect.top;
+        const maxX = containerRect.right - btnWidth - padding;
+        const maxY = containerRect.bottom - btnHeight - padding;
+        // Rastgele Bir Konum Hesaplar
+        let randomX = Math.random() * (maxX - minX) + minX;
+        let randomY = Math.random() * (maxY - minY) + minY;
+        // Evet Butonunun Altına Kaçmasını Engeller
+        const yesRect = yesBtn.getBoundingClientRect();
+        if (
+          randomY > yesRect.top - btnHeight &&
+          randomY < yesRect.bottom + btnHeight &&
+          randomX + btnWidth > yesRect.left &&
+          randomX < yesRect.right
+        ) {
+          randomY = yesRect.top - btnHeight - padding;
+          if (randomY < minY + padding) randomY = minY + padding;
+        }
+        // Hayır Butonunu Konteyner İçinde Mutlak Konumlandırır
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = `${randomX - containerRect.left}px`;
+        noBtn.style.top = `${randomY - containerRect.top}px`;
+        noBtn.style.zIndex = 10;
+        // Evet Butonunu Her Seferinde Biraz Büyütür
+        yesBtn.style.transform = `scale(${1 + noClickCount * 0.1})`;
+        // Mesajlar Biterse Hayır Butonunu Gizler
+        if (noClickCount >= noResponses.length) {
+          noBtn.style.visibility = 'hidden';
+        }
+      }
+      // Evet Butonuna Tıklanınca Çalışan Fonksiyon
+      function handleYesButtonClick() {
+        // Eğer Başarı Durumu Varsa Hiçbir Şey Yapmaz
+        if (isSuccessState) return;
+        // Başarı Durumunu Aktif Eder
+        isSuccessState = true;
+        // Butonları Gizler
+        document.querySelector('.buttons-container').style.display = 'none';
+        // Formu Gösterir
+        formSection.style.display = 'block';
+        // Kalp Animasyonunu Başlatır
+        startHeartAnimation();
+      }
+      // Kalp Animasyonunu Başlatan Fonksiyon
+      function startHeartAnimation() {
+        // Önceki Kalpleri Temizler
+        heartsContainer.innerHTML = '';
+        // Belirlenen Sayıda Kalp Oluşturur
+        for (let i = 0; i < totalHearts; i++) {
+          createHeart(i * 120);
+        }
+        // Belirli Aralıklarla Yeni Kalpler Ekler
+        setInterval(() => {
+          const hearts = document.querySelectorAll('.heart');
+          if (hearts.length < totalHearts) {
+            createHeart(0);
+          }
+        }, 400);
+      }
+      // Tek Bir Kalp Oluşturan Fonksiyon
+      function createHeart(delay) {
+        setTimeout(() => {
+          // Kalp İçin Yeni Bir Div Oluşturur
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          // Rastgele Bir Kalp Emojisi Seçer
+          heart.innerHTML = heartColors[Math.floor(Math.random() * heartColors.length)];
+          // Kalbi Rastgele Bir Yere Yerleştirir
+          heart.style.left = `${Math.random() * 100}%`;
+          // Animasyon Süresini Ve Gecikmesini Rastgele Ayarlar
+          heart.style.animationDuration = `${3 + Math.random() * 3}s`;
+          heart.style.animationDelay = `${Math.random() * 2}s`;
+          // Kalbi Konteynere Ekler
+          heartsContainer.appendChild(heart);
+          // Belirli Bir süre Sonra Kalbi Siler
+          setTimeout(() => {
+            if (heart.parentNode) heart.remove();
+          }, 8000);
+        }, delay);
+      }
+      // Form Gönderildiğinde Çalışan Fonksiyon
+      function handleFormSubmit(e) {
+        // Sayfanın Yenilenmesini Engeller
+        e.preventDefault();
+        // Formdaki Verileri Alır
+        const formData = new FormData(userForm);
+        const firstDate = formData.get('ilkbulusma');
+        const loveSong = formData.get('sarki');
+        const secret = formData.get('hayal');
+        // Form Alanını Teşekkür Mesajı Ve Kullanıcı Yanıtlarıyla Değiştirir
+        formSection.innerHTML = `
+          <h2 class="form-title">Teşekkürler! 💖</h2>
+          <p>Seninle İlgili Bu Romantik Detayları Öğrendiğim İçin Çok Mutluyum. Şimdi Ekran Görüntüsü Alıp Bana Gönderebilirsin! 💌</p>
+          <ul style="text-align: left; margin: 1rem 0; padding-left: 1.5rem;">
+            <li><strong>Hayalindeki İlk Buluşma:</strong> ${firstDate}</li>
+            <li><strong>Birlikte Dinlemek İstediğin Aşk Şarkısı:</strong> ${loveSong}</li>
+            <li><strong>En Romantik Hayalin:</strong> ${secret}</li>
+          </ul>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>
