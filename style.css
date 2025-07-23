@@ -1,0 +1,403 @@
+/* HOŞGELDİN , KODU İNCELEYECEĞİNİZİ BİLDİĞİMDEN BAZI ALANLARA YORUM SATIRI BIRAKTIM. */
+/*
+  Temel Renk Değişkenlerini Tanımlar
+  --Primary-Color: Ana Tema Rengi (Pembe)
+  --Secondary-Color: İkincil Tema Rengi
+  --Success-Color: Başarı Durumu İçin Kullanılır
+  --Danger-Color: Hata Durumu İçin Kullanılır
+  --Text-Color: Genel Yazı Rengi
+  --Form-Bg: Form Arka Plan Rengi
+  --Form-Text: Form Yazı Rengi
+  --Font-Main: Ana Yazı Tipi
+*/
+:root {
+    --primary-color: #ff69b4;
+    --secondary-color: #ffb6c1;
+    --success-color: #4caf50;
+    --danger-color: #f44336;
+    --text-color: #fff;
+    --form-bg: #fff;
+    --form-text: #333;
+    --font-main: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/*
+  Tüm Elemanların Kutu Modelini Sınırlar Ve Varsayılan Margin/Padding'i Sıfırlar
+*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+  Sayfa Gövdesi İçin Arka Plan, Yazı Tipi Ve Hizalama Ayarları
+*/
+body {
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(120deg, #ffe0ec 0%, #f9c6d1 100%);
+    color: #a80038;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+/*
+  Ana Konteynerin Genişliği, Arka Planı, Gölgesi Ve Konumlandırması
+*/
+.container {
+    width: 100%;
+    max-width: 430px;
+    margin: 3rem auto 0 auto;
+    background: #fff0f6;
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px rgba(255,79,129,0.13);
+    padding: 2.5rem 2rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+/*
+  Başlıklar İçin Boyut, Gölge Ve Animasyon
+*/
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out;
+}
+
+/*
+  Açıklama Metni İçin Renk, Arka Plan Ve Gölge
+*/
+.desc {
+    font-size: 1.1rem;
+    color: #a80038;
+    margin-bottom: 2.2rem;
+    background: rgba(255,182,185,0.13);
+    border-radius: 1.2rem;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 2px 12px rgba(255,79,129,0.07);
+}
+
+/*
+  Butonları Yanyana Ve Aralıklı Yerleştirir
+*/
+.buttons-container {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    margin-top: 30px;
+}
+
+/*
+  Tüm Butonlar İçin Temel Stil
+*/
+.btn {
+    padding: 1rem 2.2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(255, 79, 129, 0.13);
+    background: linear-gradient(90deg, #ffb6b9 0%, #ff4f81 100%);
+    color: #fff;
+    transition: background 0.2s, transform 0.2s;
+    min-width: 120px;
+}
+
+/*
+  Hayır Butonu İçin Farklı Arka Plan Ve Kenarlık
+*/
+.btn--no {
+    background: linear-gradient(90deg, #fff0f6 0%, #ffb6b9 100%);
+    color: #a80038;
+    border: 2px solid #ff4f81;
+}
+
+/*
+  Buton Üzerine Gelince Animasyon Ve Gölge
+*/
+.btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0 8px 24px rgba(255, 79, 129, 0.18);
+}
+
+/*
+  Butona Basınca Hafif Aşağı İter
+*/
+.btn:active {
+    transform: translateY(1px);
+}
+
+/*
+  Başarı Durumu İçin Buton Rengi
+*/
+.btn--success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+/*
+  Hata Durumu İçin Buton Rengi
+*/
+.btn--danger {
+    background-color: var(--danger-color);
+    color: white;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+/*
+  Form Alanı Başlangıçta Gizli, Animasyonlu Açılır
+*/
+.form-section {
+    margin-top: 2.5rem;
+    display: none;
+    animation: fadeIn 0.7s;
+}
+
+/*
+  Form Konteyneri İçin Arka Plan, Gölge Ve Kenar Yuvarlama
+*/
+.form-container {
+    background-color: var(--form-bg);
+    color: var(--form-text);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.5s ease-out;
+}
+
+/*
+  Form Başlığı İçin Renk Ve Boyut
+*/
+.form-title {
+    color: #ff4f81;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+/*
+  Kaydırma Bilgisi İçin Renk Ve Konum
+*/
+.scroll-info {
+    color:#ff4f81;
+    font-size:0.98rem;
+    margin-bottom:1rem;
+    text-align:center;
+    position:sticky;
+    top:0;
+    background:#fff0f6;
+    z-index:2;
+}
+
+/*
+  Formun Maksimum Yüksekliği Ve Kaydırma Özelliği
+*/
+#user-form {
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 6px;
+    background:transparent;
+    position:relative;
+    z-index:1;
+}
+
+/*
+  Form Grupları Arası Boşluk Ve Hizalama
+*/
+.form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+/*
+  Form Etiketleri İçin Renk Ve Kalınlık
+*/
+.form-label {
+    font-weight: 600;
+    color: #a80038;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+/*
+  Form Giriş Alanları İçin Kenarlık, Renk Ve Geçişler
+*/
+.form-input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #ffb6b9;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    background: #fff;
+    color: #a80038;
+    transition: border 0.2s;
+}
+
+/*
+  Giriş Alanı Odakta İken Kenarlık Rengini Değiştirir
+*/
+.form-input:focus {
+    border: 2px solid #ff4f81;
+    outline: none;
+}
+
+/*
+  Formu Gönderen Butonun Stili
+*/
+.submit-btn {
+    background: linear-gradient(90deg, #ffb6b9 0%, #ff4f81 100%);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(255, 79, 129, 0.13);
+    margin-top: 1rem;
+    transition: background 0.2s, transform 0.2s;
+}
+
+/*
+  Gönder Butonuna Gelince Renk Ve Büyüme Efekti
+*/
+.submit-btn:hover {
+    background: #ff4f81;
+    transform: scale(1.05);
+}
+
+/*
+  Kalp Animasyonlarının Gözüktüğü Alanın Konumu Ve Boyutu
+*/
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/*
+  Her Bir Kalp İçin Animasyon Ve Boyut
+*/
+.heart {
+    position: absolute;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    animation: floatUpDown 4s linear infinite;
+    user-select: none;
+    bottom: -50px;
+}
+
+/*
+  Başarı Mesajı İçin Animasyon Ve Boyut
+*/
+.success-message {
+    font-size: clamp(2rem, 6vw, 4rem);
+    animation: bounceIn 0.8s ease-out;
+    margin-bottom: 2rem;
+}
+
+/*
+  Ana Başlık İçin Renk, Boyut Ve Harf Aralığı
+*/
+.main-title {
+  font-size: 1.5rem;
+  color: #ff4f81;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/*
+  Kalplerin Yukarı Doğru Animasyonu
+*/
+@keyframes floatUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        bottom: -50px;
+    }
+
+    50% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+        bottom: 100%;
+    }
+}
+
+/*
+  Sayfa Açılırken Yavaşça Görünür
+*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+  Başarı Mesajı İçin Zıplama Animasyonu
+*/
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/*
+  Formun Yukarıdan Animasyonla Gelmesi
+*/
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+  Mobil Cihazlar İçin Responsive Ayarlar
+*/
+@media (max-width: 600px) {
+  .container { padding: 1.2rem 0.5rem 1rem 0.5rem; max-width: 98vw; }
+  .main-title { font-size: 1.1rem; }
+  .desc, .form-title { font-size: 1rem; padding: 0.7rem 0.7rem; max-width: 95vw; }
+  .btn { width: 100%; font-size: 1rem; padding: 1rem 0; }
+}
